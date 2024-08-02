@@ -18,7 +18,7 @@ jobs:
       run: echo "提取的版本号为 ${{ env.VERSION }}"
     - name: 压缩文件
       run: |
-        zip -r alist-ddns-go_${{ env.VERSION }}.zip ./*  # 根据版本号命名压缩包
+        zip -r android-alist-ddns-aria2_${{ env.VERSION }}.zip ./*  # 根据版本号命名压缩包
     - name: 创建 Release
       id: create_release
       uses: actions/create-release@v1
@@ -26,7 +26,7 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
         tag_name: v${{ env.VERSION }}  # 直接使用版本号作为标签名
-        release_name: alist-ddns-go_v${{ env.VERSION }}  # 使用提取的版本号作为 Release 名称
+        release_name: android-alist-ddns-aria2_v${{ env.VERSION }}  # 使用提取的版本号作为 Release 名称
         draft: false
         prerelease: false
         body: |
@@ -37,6 +37,6 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
         upload_url: ${{ steps.create_release.outputs.upload_url }}
-        asset_path: ./alist-ddns-go_${{ env.VERSION }}.zip
-        asset_name: alist-ddns-go_v${{ env.VERSION }}.zip
+        asset_path: ./android-alist-ddns-aria2_${{ env.VERSION }}.zip
+        asset_name: android-alist-ddns-aria2_v${{ env.VERSION }}.zip
         asset_content_type: application/zip
